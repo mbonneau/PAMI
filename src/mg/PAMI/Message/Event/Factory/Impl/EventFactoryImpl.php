@@ -69,6 +69,9 @@ class EventFactoryImpl
             $eventEnd = strlen($message);
         }
         $name = substr($message, $eventStart, $eventEnd - $eventStart);
+        if ($name == 'Newcallerid') {
+            $name = 'NewCallerid';
+        }
         $className = '\\PAMI\\Message\\Event\\' . $name . 'Event';
         if (class_exists($className, true)) {
             return new $className($message);
